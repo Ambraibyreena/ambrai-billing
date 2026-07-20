@@ -82,9 +82,6 @@ export default function AuthGate({ children }) {
           >
             {loading ? "Signing in…" : "Sign in"}
           </button>
-          <p className="text-[11px] text-center" style={{ color: muted }}>
-            No account yet? Create staff logins from the Supabase dashboard → Authentication → Users, or ask Claude to build a signup flow.
-          </p>
         </form>
       </div>
     );
