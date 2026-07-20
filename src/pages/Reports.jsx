@@ -3,12 +3,12 @@ import { TrendingUp, Package, AlertTriangle, Receipt, IndianRupee } from "lucide
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from "recharts";
 import { supabase } from "../lib/supabaseClient";
 
-const ink = "#3A2430";
-const rose = "#8C2F49";
-const roseSoft = "#F4E3E7";
-const cream = "#FBF6F1";
-const line = "#EAD9DC";
-const muted = "#B48A94";
+const ink = "#3D2A32";
+const rose = "#C9628A";
+const roseSoft = "#FBE1E9";
+const cream = "#FFF8FA";
+const line = "#F3D6E0";
+const muted = "#B98CA0";
 
 const RANGES = [
   { key: "today", label: "Today" },
@@ -182,7 +182,7 @@ export default function Reports() {
             </div>
 
             {/* Daily trend chart */}
-            <div className="bg-white rounded-xl border p-4" style={{ borderColor: line }}>
+            <div className="bg-white rounded-xl border p-4 shadow-sm" style={{ borderColor: line }}>
               <h2 className="text-sm font-medium mb-3">Sales trend</h2>
               {dailyTrend.length === 0 ? (
                 <p className="text-xs py-8 text-center" style={{ color: muted }}>No sales in this period yet.</p>
@@ -203,7 +203,7 @@ export default function Reports() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
               {/* Top products */}
-              <div className="bg-white rounded-xl border p-4" style={{ borderColor: line }}>
+              <div className="bg-white rounded-xl border p-4 shadow-sm" style={{ borderColor: line }}>
                 <h2 className="text-sm font-medium mb-3">Top products</h2>
                 {topProducts.length === 0 ? (
                   <p className="text-xs py-6 text-center" style={{ color: muted }}>No sales yet.</p>
@@ -226,7 +226,7 @@ export default function Reports() {
               </div>
 
               {/* Category breakdown */}
-              <div className="bg-white rounded-xl border p-4" style={{ borderColor: line }}>
+              <div className="bg-white rounded-xl border p-4 shadow-sm" style={{ borderColor: line }}>
                 <h2 className="text-sm font-medium mb-3">By category</h2>
                 {categoryBreakdown.length === 0 ? (
                   <p className="text-xs py-6 text-center" style={{ color: muted }}>No sales yet.</p>
@@ -252,7 +252,7 @@ export default function Reports() {
             </div>
 
             {/* Low stock */}
-            <div className="bg-white rounded-xl border p-4" style={{ borderColor: line }}>
+            <div className="bg-white rounded-xl border p-4 shadow-sm" style={{ borderColor: line }}>
               <h2 className="text-sm font-medium mb-3 flex items-center gap-1.5">
                 <AlertTriangle size={14} style={{ color: "#A3402F" }} /> Low stock ({lowStock.length})
               </h2>
@@ -277,7 +277,7 @@ export default function Reports() {
 
 function KpiCard({ icon, label, value }) {
   return (
-    <div className="bg-white rounded-xl border p-3.5" style={{ borderColor: line }}>
+    <div className="bg-white rounded-xl border p-3.5 shadow-sm" style={{ borderColor: line }}>
       <div className="flex items-center gap-1.5 text-xs" style={{ color: muted }}>
         {icon} {label}
       </div>

@@ -3,12 +3,12 @@ import { Search, Printer, Minus, Plus, Tag } from "lucide-react";
 import JsBarcode from "jsbarcode";
 import { supabase } from "../lib/supabaseClient";
 
-const ink = "#3A2430";
-const rose = "#8C2F49";
-const roseSoft = "#F4E3E7";
-const cream = "#FBF6F1";
-const line = "#EAD9DC";
-const muted = "#B48A94";
+const ink = "#3D2A32";
+const rose = "#C9628A";
+const roseSoft = "#FBE1E9";
+const cream = "#FFF8FA";
+const line = "#F3D6E0";
+const muted = "#B98CA0";
 
 const LABEL_SIZES = {
   standard: { name: "Standard · 40×25mm (24/sheet)", w: "40mm", h: "25mm", cols: 3 },

@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabaseClient";
 
-const rose = "#8C2F49";
-const roseSoft = "#F4E3E7";
-const cream = "#FBF6F1";
-const line = "#EAD9DC";
-const muted = "#B48A94";
-const ink = "#3A2430";
+const rose = "#C9628A";
+const roseSoft = "#FBE1E9";
+const cream = "#FFF8FA";
+const line = "#F3D6E0";
+const muted = "#B98CA0";
+const ink = "#3D2A32";
 
 // Wrap any screen with <AuthGate>...</AuthGate> to require a logged-in staff user
 // before rendering it. Handles session restore, login, and logout.

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Search, Trash2, Pause, Play, User, Percent, X, Check, Printer, Receipt, CreditCard } from "lucide-react";
 import { supabase } from "../lib/supabaseClient";
+import { printInvoice } from "../lib/printInvoice";
 
 const PAYMENT_METHODS = ["Cash", "UPI", "Card", "Wallet"];
 
@@ -8,12 +9,12 @@ function currency(n) {
   return `₹${n.toLocaleString("en-IN", { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
 }
 
-const ink = "#3A2430";
-const rose = "#8C2F49";
-const roseSoft = "#F4E3E7";
-const cream = "#FBF6F1";
-const line = "#EAD9DC";
-const muted = "#B48A94";
+const ink = "#3D2A32";
+const rose = "#C9628A";
+const roseSoft = "#FBE1E9";
+const cream = "#FFF8FA";
+const line = "#F3D6E0";
+const muted = "#B98CA0";
 
 export default function BillingScreen() {
   const [variants, setVariants] = useState([]); // live product_variants + product name
@@ -249,7 +250,17 @@ export default function BillingScreen() {
       const { error: payErr } = await supabase.from("payments").insert(paymentRows);
       if (payErr) throw payErr;
 
-      setLastInvoice({ invoiceNumber, total: roundedTotal });
+      setLastInvoice({
+        invoiceNumber,
+        total: roundedTotal,
+        subtotal,
+        billDiscountAmount,
+        gstAmount,
+        customer,
+        items: cart.map((i) => ({ ...i, lineTotal: lineTotal(i) })),
+        payments,
+        date: new Date(),
+      });
       resetBill();
       loadCatalog(); // refresh stock numbers
     } catch (err) {
@@ -495,7 +506,7 @@ export default function BillingScreen() {
 
       {lastInvoice && (
         <div className="fixed inset-0 bg-black/30 flex items-center justify-center p-6 z-50">
-          <div className="bg-white rounded-2xl p-6 max-w-sm w-full text-center">
+          <div className="bg-white rounded-2xl p-6 max-w-sm w-full shadow-xl text-center">
             <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3" style={{ background: "#E1EFE4", color: "#3F7A50" }}>
               <Check size={22} />
             </div>
@@ -504,7 +515,7 @@ export default function BillingScreen() {
             <p className="text-2xl font-bold mt-2">{currency(lastInvoice.total)}</p>
             <div className="flex gap-2 mt-5">
               <button onClick={() => setLastInvoice(null)} className="flex-1 py-2.5 rounded-xl text-sm font-medium" style={{ background: roseSoft, color: rose }}>New sale</button>
-              <button className="flex-1 py-2.5 rounded-xl text-white text-sm font-medium flex items-center justify-center gap-1.5" style={{ background: rose }}><Printer size={14} /> Print</button>
+              <button onClick={() => printInvoice(lastInvoice)} className="flex-1 py-2.5 rounded-xl text-white text-sm font-medium flex items-center justify-center gap-1.5" style={{ background: rose }}><Printer size={14} /> Print</button>
             </div>
           </div>
         </div>

@@ -21,12 +21,12 @@ function generateSku(productName, size, color) {
   return [base, c, s].filter(Boolean).join("-") + "-" + Math.floor(Math.random() * 900 + 100);
 }
 
-const ink = "#3A2430";
-const rose = "#8C2F49";
-const roseSoft = "#F4E3E7";
-const cream = "#FBF6F1";
-const line = "#EAD9DC";
-const muted = "#B48A94";
+const ink = "#3D2A32";
+const rose = "#C9628A";
+const roseSoft = "#FBE1E9";
+const cream = "#FFF8FA";
+const line = "#F3D6E0";
+const muted = "#B98CA0";
 
 export default function ProductManagement() {
   const [products, setProducts] = useState([]);
@@ -235,7 +235,7 @@ export default function ProductManagement() {
         )}
 
         <div className="flex-1 overflow-y-auto p-4 md:p-6 max-w-2xl w-full mx-auto space-y-5">
-          <div className="bg-white rounded-xl border p-4 space-y-3" style={{ borderColor: line }}>
+          <div className="bg-white rounded-xl border p-4 shadow-sm space-y-3" style={{ borderColor: line }}>
             <div>
               <label className="text-[11px] font-medium uppercase tracking-widest" style={{ color: muted }}>Product name</label>
               <input
@@ -300,7 +300,7 @@ export default function ProductManagement() {
             </div>
           </div>
 
-          <div className="bg-white rounded-xl border p-4" style={{ borderColor: line }}>
+          <div className="bg-white rounded-xl border p-4 shadow-sm" style={{ borderColor: line }}>
             <div className="flex items-center justify-between mb-3">
               <h2 className="text-sm font-medium flex items-center gap-1.5">
                 <Tag size={14} style={{ color: rose }} /> Size & color variants
@@ -452,7 +452,7 @@ export default function ProductManagement() {
               const catName = categories.find((c) => c.id === p.category_id)?.name || "—";
               const brandName = brands.find((b) => b.id === p.brand_id)?.name || "—";
               return (
-                <div key={p.id} className="bg-white rounded-xl border p-4" style={{ borderColor: line }}>
+                <div key={p.id} className="bg-white rounded-xl border p-4 shadow-sm" style={{ borderColor: line }}>
                   <div className="flex items-start justify-between gap-2">
                     <div className="min-w-0">
                       <p className="text-sm font-semibold truncate">{p.name}</p>
