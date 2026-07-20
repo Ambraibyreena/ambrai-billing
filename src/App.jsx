@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Receipt, Package, LogOut } from "lucide-react";
+import { Receipt, Package, LogOut, Tag } from "lucide-react";
 import AuthGate from "./components/AuthGate";
 import BillingScreen from "./pages/BillingScreen";
 import ProductManagement from "./pages/ProductManagement";
+import LabelPrinting from "./pages/LabelPrinting";
 import { supabase } from "./lib/supabaseClient";
 
 const rose = "#8C2F49";
@@ -31,6 +32,13 @@ export default function App() {
             >
               <Package size={13} /> Products
             </button>
+            <button
+              onClick={() => setTab("labels")}
+              className="flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-lg"
+              style={tab === "labels" ? { background: rose, color: "white" } : { background: roseSoft, color: rose }}
+            >
+              <Tag size={13} /> Labels
+            </button>
           </div>
           <button
             onClick={() => supabase.auth.signOut()}
@@ -41,7 +49,7 @@ export default function App() {
           </button>
         </div>
 
-        {tab === "billing" ? <BillingScreen /> : <ProductManagement />}
+        {tab === "billing" ? <BillingScreen /> : tab === "products" ? <ProductManagement /> : <LabelPrinting />}
       </div>
     </AuthGate>
   );
